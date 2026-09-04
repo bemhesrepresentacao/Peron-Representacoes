@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bemhes Representação | Soluções que movem seu negócio!</title>
+    <style>
+        :root {
+            --bg-dark: #070A0F;
+            --card-bg: #0F172A;
+            --blue-accent: #0052D4;
+            --green-accent: #22C55E;
+            --text-light: #F8FAFC;
+            --text-muted: #94A3B8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            background-color: rgba(7, 10, 15, 0.95);
+            padding: 0.8rem 8%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--blue-accent);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--green-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(7, 10, 15, 0.85), rgba(7, 10, 15, 0.85)), 
+                        url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1350&q=80') center/cover;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 1rem 4rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #1E90FF, var(--green-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, var(--blue-accent), var(--green-accent));
+            color: #fff;
+            padding: 0.9rem 2.2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+        }
+
+        /* Seções */
+        section {
+            padding: 5rem 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: var(--green-accent);
+            display: block;
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2.5rem 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #1E293B;
+            border-top: 4px solid var(--blue-accent);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-top-color: var(--green-accent);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: #38BDF8;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Produtos / Portfolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #1E293B;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border: 1px solid #1E293B;
+            background-color: #070A0F;
+        }
+
+        .portfolio-item h4 {
+            color: var(--green-accent);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .tag-btn {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+            text-align: center;
+            flex: 1;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tag-cotacao {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--green-accent);
+            border: 1px solid var(--green-accent);
+        }
+
+        .tag-cotacao:hover {
+            background: var(--green-accent);
+            color: #fff;
+        }
+
+        .tag-detalhes {
+            background: rgba(0, 82, 212, 0.2);
+            color: #38BDF8;
+            border: 1px solid var(--blue-accent);
+        }
+
+        .tag-detalhes:hover {
+            background: var(--blue-accent);
+            color: #fff;
+        }
+
+        /* Modal de Detalhes */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--blue-accent);
+            border-radius: 10px;
+            max-width: 650px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            color: var(--text-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            color: var(--text-muted);
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: #fff;
+        }
+
+        .modal-body h3 {
+            color: var(--green-accent);
+            margin-bottom: 1rem;
+        }
+
+        .modal-body h4 {
+            color: #38BDF8;
+            margin: 1.2rem 0 0.5rem;
+        }
+
+        .modal-body ul {
+            margin-left: 1.2rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .modal-body li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Contato & Rodapé */
+        .contact-section {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #0F172A 100%);
+            text-align: center;
+            border-top: 1px solid #1E293B;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            color: var(--text-muted);
+        }
+
+        footer {
+            background-color: #030508;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.85rem;
+            border-top: 1px solid #1E293B;
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 1rem; }
+            nav { margin-top: 1rem; }
+            nav a { margin: 0 0.5rem; font-size: 0.8rem; }
+            .hero-content h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="Fabio Peron.png" alt="Fabio Peron" class="logo-img">            
+        </div>
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#atuacao">Atuação</a>
+            <a href="#projetos">Produtos</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Especialista em soluções industriais, incluindo lubrificação, manutenção</h1>
+            <p>Soluções que movem seu negócio! Lubrificação de alta performance, químicos industriais e desenvolvimento sustentável.</p>
+            <a href="https://wa.me/554491444344" target="_blank" class="btn">Falar no WhatsApp</a>
+        </div>
+    </section>
+
+    <section id="sobre">
+        <h2 class="section-title">Sobre o Fabio Peron</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-muted);">
+            <p>A <strong>Bemhes Representação</strong> atua no segmento industrial e agrícola em <strong>Campo Mourão-PR e região</strong>, oferecendo soluções em <strong>lubrificação de alta performance, proteção e manutenção de máquinas e equipamentos</strong>.</p>
+            <p>Nosso trabalho vai além da comercialização de produtos: buscamos <strong>entender a necessidade de cada operação e recomendar a solução mais adequada</strong>, contribuindo para aumentar a vida útil dos componentes, reduzir desgastes, falhas e paradas não programadas.</p>
+            <p>Trabalhamos com <strong>tecnologias de alto desempenho e excelente custo-benefício</strong>, buscando proporcionar <strong>maior proteção, eficiência operacional e redução dos custos de manutenção</strong>.</p>
+            <p>Nosso compromisso é transformar lubrificação em resultado: mais proteção para o seu equipamento, maior produtividade e economia para o seu negócio.</p>
+            <p><strong>Bemhes Representação</strong> — Tecnologia em lubrificação, proteção e performance para o seu negócio.</p>
+        </div>
+    </section>
+
+    <section id="atuacao" style="background: #0B1120;">
+        <h2 class="section-title">Áreas de Atuação</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>Lubrificantes</h3>
+                <p>Óleos e graxas de alta performance projetados para resistir a condições extremas de carga, temperatura e trabalho contínuo em frotas e indústrias.</p>
+            </div>
+            <div class="card">
+                <h3>Químicos Industriais</h3>
+                <p>Produtos especializados para manutenção, desengraxe, proteção anticorrosiva e otimização dos processos de produção fabril.</p>
+            </div>
+            <div class="card">
+                <h3>Soluções Sustentáveis</h3>
+                <p>Tecnologias focadas na redução de resíduos, economia de insumos e eficiência energética para operações ambientalmente responsáveis.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos">
+        <h2 class="section-title">Produtos</h2>
+        <div class="portfolio-grid">
+
+            <!-- Produto 1: Premalube -->
+            <div class="portfolio-item">
+                <img src="Premalube.jpg" alt="Premalube / Premalube Red" class="portfolio-img">
+                <div>
+                    <h4>Premalube / Premalube Red</h4>
+                    <p>Graxa multipropósito de alta performance para cargas pesadas e extrema pressão. Formulação à base de complexo de alumínio.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20Premalube." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-premalube')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 2: Premalube FG -->
+            <div class="portfolio-item">
+                <img src="premalube-fg.jpg" alt="Premalube FG" class="portfolio-img">
+                <div>
+                    <h4>Premalube FG</h4>
+                    <p>Graxa branca de grau alimentício H1 (NLGI #1 e #2) com espessante de complexo de alumínio para indústrias alimentícias e farmacêuticas.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20Premalube%20FG." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-premalubefg')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 3: Premalube Xtreme -->
+            <div class="portfolio-item">
+                <img src="premalube-xtreme.jpg" alt="Premalube Xtreme" class="portfolio-img">
+                <div>
+                    <h4>Premalube Xtreme</h4>
+                    <p>Graxa de alta performance para aplicações severas com tecnologia de sulfonato de cálcio, blend sintético e Nano-Guard™.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20Premalube%20Xtreme." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-premalubextreme')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 4: Premalube Xtreme Green -->
+            <div class="portfolio-item">
+                <img src="premalube-xtreme-green.jpg" alt="Premalube Xtreme Green" class="portfolio-img">
+                <div>
+                    <h4>Premalube Xtreme Green</h4>
+                    <p>Graxa sulfonato de cálcio verde-azulada para ambientes extremos, alta velocidade (20.000 rpm) e resistência total à água salgada.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20Premalube%20Xtreme%20Green." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-premalubextremegreen')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 5: Premalube Xtreme Food Grade -->
+            <div class="portfolio-item">
+                <img src="premalube-xtreme-fg.jpg" alt="Premalube Xtreme Food Grade" class="portfolio-img">
+                <div>
+                    <h4>Premalube Xtreme Food Grade</h4>
+                    <p>Graxa de grau alimentício H1 de sulfonato de cálcio para condições extremas, suportando cargas de solda de 800kg.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20Premalube%20Xtreme%20Food%20Grade." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-premalubextremefood')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 6: Diesel Mate -->
+            <div class="portfolio-item">
+                <img src="diesel-mate.jpg" alt="Diesel Mate" class="portfolio-img">
+                <div>
+                    <h4>Diesel Mate</h4>
+                    <p>O Diesel Mate é um aditivo completo desenvolvido para otimizar o desempenho do diesel, eficiente em S10 e biodiesel.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20Diesel%20Mate." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-dieselmate')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 7: Certop -->
+            <div class="portfolio-item">
+                <img src="certop.jpg" alt="Certop" class="portfolio-img">
+                <div>
+                    <h4>Certop (80W90 / 85W140) & Industrial</h4>
+                    <p>Óleos de alto desempenho para engrenagens e rolamentos formulados para resistir a condições severas em frotas e indústrias.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20da%20linha%20de%20%C3%93leos%20Certop." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-certop')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 8: Spectra Xtreme CI-4 -->
+            <div class="portfolio-item">
+                <img src="spectra-xtreme.jpg" alt="Spectra Xtreme CI-4" class="portfolio-img">
+                <div>
+                    <h4>Spectra Xtreme CI-4</h4>
+                    <p>Óleo lubrificante de alto desempenho para motores diesel (SAE 15W40 / API CI-4) formulado com Molysol.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20Spectra%20Xtreme%20CI-4." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-spectra')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 9: HOC Xtreme -->
+            <div class="portfolio-item">
+                <img src="hoc-xtreme.jpg" alt="HOC Xtreme" class="portfolio-img">
+                <div>
+                    <h4>HOC Xtreme (ISO 22, 32, 46, 68)</h4>
+                    <p>Óleo hidráulico monograu com Molysol para serviços pesados e extensão do intervalo de troca.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20HOC%20Xtreme." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-hoc')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 10: Oil-All Xtreme -->
+            <div class="portfolio-item">
+                <img src="oil-all-xtreme.jpg" alt="Oil-All Xtreme" class="portfolio-img">
+                <div>
+                    <h4>Oil-All Xtreme (SAE 10W30)</h4>
+                    <p>Fluido universal multifuncional com blend sintético para equipamentos agrícolas e de construção pesada.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20Oil-All%20Xtreme." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-oilall')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 11: Resist-X -->
+            <div class="portfolio-item">
+                <img src="resist-x.jpg" alt="Resist-X" class="portfolio-img">
+                <div>
+                    <h4>Resist-X</h4>
+                    <p>Protetivo anticorrosivo líquido que desloca umidade, lubrifica e forma uma película flexível contínua.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20Resist-X." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-resistx')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 12: Enforce -->
+            <div class="portfolio-item">
+                <img src="enforce.jpg" alt="Enforce" class="portfolio-img">
+                <div>
+                    <h4>Enforce</h4>
+                    <p>Limpador e desincrustante alcalino concentrado, biodegradável e não inflamável para remoção pesada.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20Enforce." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-enforce')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 13: Grrr -->
+            <div class="portfolio-item">
+                <img src="grrr.jpg" alt="Grrr" class="portfolio-img">
+                <div>
+                    <h4>Grrr</h4>
+                    <p>Limpador desengraxante multipropósito espumante e penetrante, seguro para áreas alimentícias (NSF A1).</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20Grrr." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-grrr')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Produto 14: Shiny-Side -->
+            <div class="portfolio-item">
+                <img src="shiny-side.png" alt="Shiny-Side" class="portfolio-img">
+                <div>
+                    <h4>Shiny-Side</h4>
+                    <p>Limpador e abrilhantador alcalino para remoção de óxidos em serpentinas de ar condicionado e alumínio.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="https://wa.me/554491444344?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20do%20produto%20Shiny-Side." target="_blank" class="tag-btn tag-cotacao">Cotação</a>
+                    <button onclick="openModal('modal-shinyside')" class="tag-btn tag-detalhes">Detalhes</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modais dos Produtos -->
+
+    <!-- Modal Premalube -->
+    <div id="modal-premalube" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-premalube')">&times;</span>
+            <div class="modal-body">
+                <h3>Premalube / Premalube Red - Graxa Multipropósito EP</h3>
+                <p>Graxa de complexo de alumínio de alta performance para cargas pesadas, extrema pressão e elevadas temperaturas (Graus NLGI #2, #1, Red #2, #1, #0, #00, #000 e Arctic #000).</p>
+                
+                <h4>Aplicações e Restrições:</h4>
+                <ul>
+                    <li><strong>Ideal para:</strong> Equipamentos de construção, mineração, agricultura, siderúrgicas e indústria geral (rolamentos, mancais, juntas universais e engrenagens).</li>
+                    <li><strong>Contraindicações:</strong> Não utilizar em rolamentos acima de 4.500 RPM ou em temperaturas contínuas superiores às especificações técnicas.</li>
+                </ul>
+
+                <h4>Principais Aditivos e Benefícios:</h4>
+                <ul>
+                    <li><strong>Complexo de Alumínio:</strong> Excelente reversão ao calor e altíssima resistência à lavagem por água.</li>
+                    <li><strong>Bissulfeto de Molibdênio e Grafite:</strong> Proteção antidesgaste superior contra choques mecanicos e ambientes abrasivos.</li>
+                    <li><strong>Polímeros Adesivos:</strong> Fixam a graxa no ponto de aplicação evitando escorrimentos.</li>
+                </ul>
+
+                <h4>Especificações Técnicas:</h4>
+                <ul>
+                    <li><strong>Carga Timken OK:</strong> 60 a 65 lbs.</li>
+                    <li><strong>Atende especificações:</strong> Caterpillar MPG, Case 251H EP, Ford M1693A, MIL-G-23549C, USDA H2.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Premalube FG -->
+    <div id="modal-premalubefg" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-premalubefg')">&times;</span>
+            <div class="modal-body">
+                <h3>Premalube FG - Graxa de Grau Alimentício H1</h3>
+                <p>Graxa branca multipropósito à base de complexo de alumínio (NLGI #1 e #2) especialmente formulada para a indústria alimentícia e farmacêutica.</p>
+                
+                <h4>Principais Benefícios:</h4>
+                <ul>
+                    <li><strong>Classificação H1:</strong> Autorizada para contato incidental com alimentos.</li>
+                    <li><strong>Proteção Térmica:</strong> Ponto de gota de 237,8 °C (#1) / 264 °C (#2).</li>
+                    <li><strong>Resistência de Carga:</strong> Carga Timken OK de 20 Kg.</li>
+                </ul>
+
+                <h4>Aplicações e Normas:</h4>
+                <ul>
+                    <li><strong>Aplicações:</strong> Máquinas de costura, correias transportadoras, rolamentos, mancais, esteiras e processadoras de alimentos.</li>
+                    <li><strong>Certificações:</strong> USDA H1, NSF, FDA 21 CFR 172.878 e 178.3620A, Óleo mineral USP.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Premalube Xtreme -->
+    <div id="modal-premalubextreme" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-premalubextreme')">&times;</span>
+            <div class="modal-body">
+                <h3>Premalube Xtreme - Graxa de Alta Performance</h3>
+                <p>Graxa multipropósito para aplicações severas formulada com complexo de sulfonato de cálcio, blend sintético e Nano-Guard™ (NLGI #1 e #2).</p>
+                
+                <h4>Desempenho Extremo:</h4>
+                <ul>
+                    <li><strong>Elevadas Temperaturas:</strong> Ponto de gota de 302 °C a 321 °C; operacional até 260 °C (intermitente).</li>
+                    <li><strong>Extrema Pressão:</strong> Carga de solda 4-Ball superior a +800 kg e Timken OK de 70 a 75 lb.</li>
+                </ul>
+
+                <h4>Aplicações e Normas:</h4>
+                <ul>
+                    <li><strong>Aplicações:</strong> Equipamentos industriais, siderúrgicas, fábricas de papel, mineração e ambientes expostos a alto volume de água.</li>
+                    <li><strong>Atende especificações:</strong> MIL-DTL-23549C, Caterpillar MPG, CASE 251H EP, GM 6031-M, DIN 51 825 / 51 818.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Premalube Xtreme Green -->
+    <div id="modal-premalubextremegreen" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-premalubextremegreen')">&times;</span>
+            <div class="modal-body">
+                <h3>Premalube Xtreme Green - Graxa Verde-Azulada EP</h3>
+                <p>Graxa de sulfonato de cálcio em blend sintético projetada para altíssimas rotações e ambientes submersos ou marinhos.</p>
+                
+                <h4>Principais Diferenciais:</h4>
+                <ul>
+                    <li><strong>Alta Rotação:</strong> Desenvolvida para suportar rotações de até 20.000 RPM.</li>
+                    <li><strong>Carga e Impacto:</strong> Carga de solda 4-Ball de +800 kg e Carga Timken OK de 75 lb.</li>
+                    <li><strong>Proteção Marítima:</strong> Excepcional resistência contra lavagem por água e contaminação por água salgada.</li>
+                </ul>
+
+                <h4>Aplicações:</h4>
+                <ul>
+                    <li>Rolamentos de alta velocidade, bombas de turbina, injetoras de plástico, chassi de caminhões, tratores e máquinas agrícolas.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Premalube Xtreme Food Grade -->
+    <div id="modal-premalubextremefood" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-premalubextremefood')">&times;</span>
+            <div class="modal-body">
+                <h3>Premalube Xtreme Food Grade - H1 Severo</h3>
+                <p>Graxa de sulfonato de cálcio de grau alimentício H1 (NLGI #2) para aplicações extremas que exigem alta durabilidade (dura de 2 a 5 vezes mais).</p>
+                
+                <h4>Especificações e Vantagens:</h4>
+                <ul>
+                    <li><strong>Extrema Pressão H1:</strong> Suporta 800 kg na carga de solda 4-Ball e 65 lb na Timken OK.</li>
+                    <li><strong>Aplicações em Alta Rotação:</strong> Suporta até 20.000 RPM em equipamentos alimentícios.</li>
+                    <li><strong>Normas:</strong> USDA H1, FDA 21 CFR 178.3570, Requerimentos U.S.P.</li>
+                </ul>
+
+                <h4>Ideal para:</h4>
+                <ul>
+                    <li>Recravadoras, transportadores, rolos, fornos e esteiras modulares de laticínios, cervejarias e frigoríficos.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Diesel Mate -->
+    <div id="modal-dieselmate" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-dieselmate')">&times;</span>
+            <div class="modal-body">
+                <h3>Diesel Mate - Aditivo para Diesel</h3>
+                <p>Aditivo completo para otimização de combustível, compatível com diesel S10, S500 e biodiesel.</p>
+                
+                <h4>Benefícios Comprovados:</h4>
+                <ul>
+                    <li><strong>Aumento de Rendimento:</strong> Melhora a eficiência operacional em até 10%.</li>
+                    <li><strong>Ganho de Cetano:</strong> Aumenta o índice em até 10% (elevação média de 3 a 4 pontos), facilitando a ignição.</li>
+                    <li><strong>Redução de Emissões:</strong> Reduz a fumaça preta e gases poluentes em média de 20%.</li>
+                    <li><strong>Proteção de Injetores:</strong> Lubrifica bombas e bicos contra o desgaste provocado pelo diesel de ultrabaixo teor de enxofre. Cumpre o teste Cummins L-10.</li>
+                </ul>
+
+                <h4>Ações dos Componentes:</h4>
+                <ul>
+                    <li><strong>Desemulsificante:</strong> Separa a água acumulada para drenagem, evitando entupimento de filtros.</li>
+                    <li><strong>Desativador de Metais:</strong> Inibe o cobre e metais pesados de oxidarem o combustível.</li>
+                    <li><strong>Melhorador de Fluxo a Frio:</strong> Evita a gelificação do combustível em baixas temperaturas.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Certop -->
+    <div id="modal-certop" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-certop')">&times;</span>
+            <div class="modal-body">
+                <h3>Linha Certop - Óleos para Engrenagens e Rolamentos</h3>
+                <p>Óleos de alta performance desenvolvidos para durar até 4 vezes mais que os lubrificantes convencionais.</p>
+
+                <h4>Certop Automotivo / Pesado (80W90 e 85W140):</h4>
+                <ul>
+                    <li><strong>Aplicações:</strong> Diferenciais, transmissões manuais, eixos e caixas de engrenagens (API GL-3, GL-4, GL-5, SAE J2360, Mack GO-J, ZF TE-ML).</li>
+                    <li><strong>Diferenciais:</strong> Condicionadores de selos (evitam vazamentos), agentes adesivos (eliminam desgaste por partida a seco) e alta tolerância térmica (até 160 °C).</li>
+                </ul>
+
+                <h4>Certop Industrial (ISO 68 ao 680):</h4>
+                <ul>
+                    <li><strong>Aplicações:</strong> Caixas de engrenagens industriais (dentes retos, helicoidais, sem-fim) e rolamentos industriais sob condições extremas.</li>
+                    <li><strong>Especificações:</strong> Atende DIN 51517 CLP, AGMA 2EP a 8EP, US Steel 224, David Brown.</li>
+                    <li><strong>Restrição:</strong> Não utilizar em engrenagens de bronze ou cobre.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Spectra Xtreme CI-4 -->
+    <div id="modal-spectra" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-spectra')">&times;</span>
+            <div class="modal-body">
+                <h3>Spectra Xtreme CI-4 - Óleo para Motores Diesel</h3>
+                <p>Óleo lubrificante de alto desempenho SAE 15W40 / API CI-4, formulado para suportar trabalhos pesados e proporcionar intervalos de troca estendidos[cite: 5].</p>
+
+                <h4>Diferenciais e Tecnologia:</h4>
+                <ul>
+                    <li><strong>Molysol:</strong> Composto de molibdênio sintético solúvel em óleo para proteção antidesgaste superior[cite: 5].</li>
+                    <li><strong>Neutralizadores de Ácidos (TBN Típico 14.9):</strong> Alta reserva alcalina para neutralização de ácidos, fazendo o óleo durar até 300% mais[cite: 5].</li>
+                    <li><strong>Alto Poder Detergente e Dispersante:</strong> Mantém borras, fuligens e vernizes em suspensão até o filtro, prevenindo depósitos no motor[cite: 5].</li>
+                </ul>
+
+                <h4>Aplicações e Desempenho:</h4>
+                <ul>
+                    <li><strong>Ideal para:</strong> Motores a diesel de alta potência de caminhões, tratores, ônibus e máquinas agrícolas[cite: 5].</li>
+                    <li><strong>Especificações Atendidas:</strong> API CI-4, ACEA E7-16, MB 228.3, MAN 3275, Volvo VDS-3, Cummins CES 20077, Renault RLD-2, Deutz DQC-III, Mack EO-M+[cite: 5].</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal HOC Xtreme -->
+    <div id="modal-hoc" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-hoc')">&times;</span>
+            <div class="modal-body">
+                <h3>HOC Xtreme - Óleo Hidráulico de Alto Desempenho</h3>
+                <p>Óleo hidráulico monograu com Molysol (disponível em ISO 22, 32, 46 e 68) desenvolvido para serviços pesados e operação prolongada[cite: 6].</p>
+
+                <h4>Benefícios e Aditivação Especial:</h4>
+                <ul>
+                    <li><strong>Vida Útil Prolongada:</strong> Estabilidade à oxidação superior a 6.000 horas (ASTM D943)[cite: 6].</li>
+                    <li><strong>Condicionadores de Selos & Inibidores de Vazamento:</strong> Agentes que amaciam e causam dilatação controlada nos selos, evitando vazamentos[cite: 6].</li>
+                    <li><strong>MOLYSOL e Redutores de Atrito:</strong> Protegem contra desgaste severo e bombas de alta pressão[cite: 6].</li>
+                </ul>
+
+                <h4>Aplicações e Restrições:</h4>
+                <ul>
+                    <li><strong>Indicado para:</strong> Bombas de palhetas, pistão e engrenagens em condições industriais e móveis severas[cite: 6].</li>
+                    <li><strong>Especificações Atendidas:</strong> Parker (Denison) HF-0/1/2, Eaton-Vickers M-2950-S, DIN 51524-2/3 (HM, HV), Cincinnati P68/P69/P70, Bosch Rexroth[cite: 6].</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Oil-All Xtreme -->
+    <div id="modal-oilall" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-oilall')">&times;</span>
+            <div class="modal-body">
+                <h3>Oil-All Xtreme - Fluido Universal (SAE 10W30)</h3>
+                <p>Fluido universal multifuncional formulado com blend sintético para transmissões, hidráulico e freios úmidos do setor agrícola e de construção[cite: 7].</p>
+
+                <h4>Aplicações Múltiplas e Redução de Estoque:</h4>
+                <ul>
+                    <li><strong>Sistemas Atendidos:</strong> Transmissões hidrostáticas, Tomada de Força (PTO/TF), freios úmidos, direção hidráulica e sistemas hidráulicos em geral[cite: 7].</li>
+                    <li><strong>Condicionadores de Freio:</strong> Reduzem a trepidação e ruídos nos freios banhados a óleo[cite: 7].</li>
+                    <li><strong>Ampla Faixa Térmica:</strong> Operação estável de -30 °C a 190 °C[cite: 7].</li>
+                </ul>
+
+                <h4>Especificações Atendidas:</h4>
+                <ul>
+                    <li><strong>Homologações OEM:</strong> John Deere Hy-Gard J20C/D, Case-IH Hy-Tran Ultra, Massey Ferguson M-1145, Ford New Holland MAT 3540/134D, CAT TO-2/MTO, Volvo WB-101, ZF TE-ML 03E/05F/06K/17E/21F, API GL-4[cite: 7].</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Resist-X -->
+    <div id="modal-resistx" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-resistx')">&times;</span>
+            <div class="modal-body">
+                <h3>Resist-X - Protetivo Anticorrosivo</h3>
+                <p>Protetivo anticorrosivo líquido para metais que desloca a umidade, lubrifica e forma uma película flexível de longa duração.</p>
+                
+                <h4>Características Principais:</h4>
+                <ul>
+                    <li><strong>Película Flexível:</strong> Não resseca nem descasca com o tempo.</li>
+                    <li><strong>Ação Deslocante:</strong> Remove a umidade diretamente das superfícies metálicas.</li>
+                    <li><strong>Cor / Densidade:</strong> Castanho | 0.79 a 0.83 g/cm³.</li>
+                </ul>
+
+                <h4>Aplicações:</h4>
+                <ul>
+                    <li>Estocagem, montagem e transporte de máquinas, peças, chassis, rodas, terminais de baterias e equipamentos expostos à maresia ou tempo seco.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Enforce -->
+    <div id="modal-enforce" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-enforce')">&times;</span>
+            <div class="modal-body">
+                <h3>Enforce - Desengraxante Alcalino Concentrado</h3>
+                <p>Limpador e desincrustante alcalino de alta concentração, biodegradável e não inflamável.</p>
+
+                <h4>Diferenciais Técnicos:</h4>
+                <ul>
+                    <li><strong>Alta Diluição:</strong> Rende até 1:50 em água.</li>
+                    <li><strong>Potência Alcalina:</strong> pH (100%) entre 12,5 e 13,5 para rápida remoção de graxas pesadas.</li>
+                    <li><strong>Segurança:</strong> Biodegradável e saneante registrado na ANVISA/MS.</li>
+                </ul>
+
+                <h4>Aplicações:</h4>
+                <ul>
+                    <li>Equipamentos, tubulações, máquinas, moldes, pisos e superfícies laváveis industriais.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Grrr -->
+    <div id="modal-grrr" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-grrr')">&times;</span>
+            <div class="modal-body">
+                <h3>Grrr - Limpador Desengraxante Multipropósito</h3>
+                <p>Poderoso limpador penetrante e espumante que não ataca superfícies delicadas nem deixa resíduos oleosos.</p>
+
+                <h4>Especificações e Vantagens:</h4>
+                <ul>
+                    <li><strong>Grau Alimentício:</strong> Certificado NSF A1 para uso em áreas de processamento de alimentos.</li>
+                    <li><strong>Segurança de Materiais:</strong> Pode ser utilizado em borrachas, plásticos, alumínio anodizado e vidros.</li>
+                    <li><strong>Diluição:</strong> 1:15 para sujeiras pesadas até 1:30 para limpeza leve.</li>
+                </ul>
+
+                <h4>Aplicações:</h4>
+                <ul>
+                    <li>Grelhas, peças industriais delicadas, máquinas pesadas, superfícies de alumínio polido e ambientes alimentícios.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Shiny-Side -->
+    <div id="modal-shinyside" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-shinyside')">&times;</span>
+            <div class="modal-body">
+                <h3>Shiny-Side - Limpador de Serpentinas e Alumínio</h3>
+                <p>Limpador e abrilhantador alcalino espumante de alta penetração para remoção de óxidos.</p>
+
+                <h4>Diferenciais:</h4>
+                <ul>
+                    <li><strong>Ação Rápida:</strong> Tempo de ação de 3 a 5 minutos.</li>
+                    <li><strong>Rendimento:</strong> Diluição de até 1:25 em água.</li>
+                    <li><strong>Registro:</strong> Produto registrado na ANVISA.</li>
+                </ul>
+
+                <h4>Aplicações:</h4>
+                <ul>
+                    <li>Serpentinas de alumínio de ar condicionado, trocadores de calor, escadas, andaimes, rodas de alumínio não polidas e carrocerias de caminhões.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section id="contato" class="contact-section">
+        <h2>Entre em Contato</h2>
+        <p>Atendimento para Campo Mourão – PR e Região</p>
+        
+        <div class="contact-info">
+            <p><strong>WhatsApp:</strong> (44) 99144-4344</p>
+            <p><strong>E-mail:</strong> fabioperon.nch@gmail.com</p>
+            <p><strong>Localização:</strong> Campo Mourão – PR e região</p>
+        </div>
+
+        <a href="https://wa.me/554491444344" target="_blank" class="btn">Solicitar Atendimento</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Bemhes Representação. Parceria • Confiança • Resultados.</p>
+    </footer>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        // Fechar modal ao clicar fora da caixa do conteúdo
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
+
